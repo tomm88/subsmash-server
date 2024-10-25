@@ -2,7 +2,10 @@ const { Sequelize } = require('sequelize');
 const config = require('../../config/sequelizeConfig');
 
 const env = process.env.NODE_ENV || 'development';
-const sequelize = new Sequelize(config[env]);
+const sequelize = process.env.NODE_ENV === 'production' 
+    ? new Sequelize(process.env.DATABASE_URL, config.production)
+    : new Sequelize(config[env]);
+
 
 const Streamer = require('./streamer')(sequelize, Sequelize.DataTypes);
 const Subscriber = require('./subscriber')(sequelize, Sequelize.DataTypes);
