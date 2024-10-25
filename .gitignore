@@ -1,0 +1,24 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS Generated Files
+.DS_Store           
+Thumbs.db            
+
+# Editor Directories and Files
+.vscode/         
+.idea/              
+*.sublime-project    
+*.sublime-workspace  
+
+# Dependency Directories
+node_modules/        
+
+# Environments
+.env
+.env.*
