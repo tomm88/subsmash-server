@@ -1,6 +1,5 @@
 module.exports = {
     FRONTEND_URL: process.env.FRONTEND_URL,
-    SERVER_URL: process.env.SERVER_URL,
     PORT: process.env.PORT,
     TWITCH_CLIENT_ID: process.env.TWITCH_CLIENT_ID,
     TWITCH_CLIENT_SECRET: process.env.TWITCH_CLIENT_SECRET,
