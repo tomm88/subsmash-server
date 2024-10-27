@@ -38,6 +38,8 @@ app.use(session({
      }
 }));
 
+sessionStore.sync();
+
 app.use(
     cors({
         origin: config.FRONTEND_URL,

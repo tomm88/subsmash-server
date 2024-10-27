@@ -11,7 +11,7 @@ const authCallback = async (req, res) => {
     const returnedState = req.query.state;
 
     console.log("saved from req.query.state is: ", returnedState)
-    console.log("req.session.state is: ", req.session.state)
+    console.log("req.session is: ", req.session)
 
     //Checks that the returned state matches the one saved in session data for authentication
     if (returnedState !== req.session.state) {
