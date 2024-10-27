@@ -31,10 +31,12 @@ app.use(session({
     store: sessionStore,
     resave: false,
     saveUninitialized: false,
+    proxy: config.IS_PRODUCTION,
     cookie: { 
         secure: config.IS_PRODUCTION,
         domain: '.subsmash.io',
-        maxAge: 1000 * 60 * 60 * 24 * 7
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+        sameSite: 'None'
      }
 }));
 
