@@ -15,8 +15,15 @@ const initializeWebsocketServer = (server) => {
 
         addClient(hash, streamerDatabaseId, ws);
 
+        const interval = setInterval(() => {
+            if (ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ type: 'heartbeat', data: { isTest: false }}));
+            }
+        }, 25000);
+
         ws.on('close', () => {
             removeClient(hash, streamerDatabaseId, ws);
+            clearInterval(interval)
         });
 
         ws.on('error', error => console.error('Websocket error:', error));
