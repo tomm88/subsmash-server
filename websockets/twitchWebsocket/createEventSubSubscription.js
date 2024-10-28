@@ -40,6 +40,7 @@ const createEventSubSubsciption = async (type, websocketId, accessToken, streame
 
         wsManager.updateSubscription(streamerDatabaseId, subscriptionId, type)
         console.log("EventSub subscription created for streamer", streamerDatabaseId, "of type", type)
+        return { success: true, message: `EventSub subscription created for streamer", ${streamerDatabaseId}, "of type", ${type}`}
     } catch (error) {
         console.error("Could not create EventSub subscription for streamer", streamerDatabaseId, "of type", type, error.response.data, error.config.data)
     }
