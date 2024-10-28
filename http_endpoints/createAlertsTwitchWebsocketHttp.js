@@ -24,7 +24,7 @@ const createAlertsTwitchWebsocketHttp = async (req, res) => {
             }
         }
 
-        return { success: true, message: 'Alerts Eventsub established'}
+        res.status(200).json({ success: true, message: 'Alerts Eventsub established'})
 
 
     } catch (error) {

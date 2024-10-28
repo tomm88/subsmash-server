@@ -24,7 +24,7 @@ const createSlideshowTwitchWebsocketHttp = async (req, res) => {
             }
         }
 
-        return { success: true, message: 'Slideshow Eventsub established'}
+        res.status(200).json({ success: true, message: 'Slideshow Eventsub established'});
 
     } catch (error) {
         console.error("Error creating slideshow EventSub subscriptions", error)
