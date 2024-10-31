@@ -49,6 +49,20 @@ app.use(
     })
 );
 
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    if (!origin && (req.path === '/auth/callback' || req.path === '/auth/twitchUriRedirect') && req.method === 'GET') {
+        return next();
+    }
+
+    if (!origin && req.method !== 'OPTIONS') {
+        console.log('direct browser access condition triggered')
+        return res.redirect(config.FRONTEND_URL)
+    }
+
+    next();
+})
+
 app.use(authRoute);
 app.use(twitchRoutes);
 app.use(openAiApiRoutes);
