@@ -34,13 +34,11 @@ app.use(session({
     proxy: config.IS_PRODUCTION,
     cookie: { 
         secure: config.IS_PRODUCTION,
-        domain: '.subsmash.io',
+        domain: config.IS_PRODUCTION ? '.subsmash.io' : '',
         maxAge: 1000 * 60 * 60 * 24 * 7,
-        sameSite: 'None'
+        sameSite: config.IS_PRODUCTION ? 'None' : '',
      }
 }));
-
-sessionStore.sync();
 
 app.use(
     cors({
