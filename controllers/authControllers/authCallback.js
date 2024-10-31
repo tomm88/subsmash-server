@@ -12,7 +12,8 @@ const authCallback = async (req, res) => {
 
     //Checks that the returned state matches the one saved in session data for authentication
     if (returnedState !== req.session.state) {
-       return res.status(403).send('Invalid state');
+       alert('An error occured during login. Please try again. If the error persists, please report it in the Discord')
+       res.redirect(config.FRONTEND_URL)
     }
 
     try {
