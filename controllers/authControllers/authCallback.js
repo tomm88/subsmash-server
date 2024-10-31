@@ -10,9 +10,6 @@ const authCallback = async (req, res) => {
     const code = req.query.code;
     const returnedState = req.query.state;
 
-    console.log("saved from req.query.state is: ", returnedState)
-    console.log("req.session is: ", req.session)
-
     //Checks that the returned state matches the one saved in session data for authentication
     if (returnedState !== req.session.state) {
        return res.status(403).send('Invalid state');
