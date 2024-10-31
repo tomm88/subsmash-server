@@ -56,7 +56,6 @@ app.use((req, res, next) => {
     }
 
     if (!origin && req.method !== 'OPTIONS') {
-        console.log('direct browser access condition triggered')
         return res.redirect(config.FRONTEND_URL)
     }
 
