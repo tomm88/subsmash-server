@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
             onUpdate: DataTypes.NOW
         }
     }, {
-        tableName: 'sessions'
+        tableName: 'Sessions'
     });
 
     return Session;

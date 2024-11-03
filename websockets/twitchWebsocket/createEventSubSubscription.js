@@ -21,6 +21,12 @@ const createEventSubSubsciption = async (type, websocketId, accessToken, streame
             }
         }
 
+        if (type === "channel.raid") {
+            condition = {
+                to_broadcaster_user_id: streamerTwitchId
+            }
+        }
+
         const response = await axios.post(config.TWITCH_EVENTSUB_URL, {
             type,
             version,

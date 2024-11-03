@@ -33,6 +33,7 @@ const deleteClientSet = (streamerDatabaseId) => {
 
 //Broadcasts a websocket event to all clients connected for the relevant streamer
 const broadcastToStreamers = (streamerDatabaseId, type, data) => {
+    console.log('in broadcastToStreamers: ', streamerDatabaseId, type, data)
     const userClients = clients[streamerDatabaseId] || new Set(); 
     userClients.forEach(client => {
         if (client.ws.readyState === WebSocket.OPEN) {

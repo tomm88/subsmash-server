@@ -7,7 +7,7 @@ const twitchUriRedirect = (req, res) => {
     req.session.state = state;
 
     //Redirect the user to the Twitch authorization URL
-    const authUrl = `${config.TWITCH_OAUTH_URL}?client_id=${config.TWITCH_CLIENT_ID}&redirect_uri=${config.TWITCH_REDIRECT_URI}&response_type=code&scope=channel%3Aread%3Asubscriptions%20moderator%3Aread%3Afollowers&state=${state}`;
+    const authUrl = `${config.TWITCH_OAUTH_URL}?client_id=${config.TWITCH_CLIENT_ID}&redirect_uri=${config.TWITCH_REDIRECT_URI}&response_type=code&scope=channel%3Aread%3Asubscriptions%20moderator%3Aread%3Afollowers%20bits%3Aread&state=${state}`;
     res.redirect(authUrl);
 };
 

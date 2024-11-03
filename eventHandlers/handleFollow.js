@@ -2,16 +2,15 @@ const { broadcastToStreamers } = require('../websockets/subSmashWebsocket/websoc
 
 const handleFollow = async (data, streamerDatabaseId) => {
 
-    const type = 'new_subscriber';
+    const type = 'follower';
 
     const followerData = {
-        followerTwitchUsername: data.user_name,
-        imageUrl: 'subNotFound___123.png',
-        characterName: 'Follower',
-        tier: 'none'
+        followerTwitchUsername: data.user_name
     }
 
-    broadcastToStreamers(streamerDatabaseId, type, followerData)
+    broadcastToStreamers(streamerDatabaseId, type, followerData);
+
+    return followerData
 }
 
 module.exports = handleFollow;

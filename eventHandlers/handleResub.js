@@ -11,7 +11,7 @@ const handleResub = async (data) => {
     const cumulativeMonths = data.cumulative_months;
     const tier = data.tier;
     const type = "resub";
-    const message = data.message.text;
+    const resubMessage = data.message.text;
     let formattedData;
 
     //Get usernames of streamer and subscriber for finding or creating new subscriber record in database
@@ -42,7 +42,7 @@ const handleResub = async (data) => {
             imageUrl: subscriberCharacter.image_url,
             tier,
             cumulativeMonths,
-            message
+            resubMessage
         }
 
         broadcastToStreamers(streamerDatabaseId, type, formattedData);
@@ -60,7 +60,7 @@ const handleResub = async (data) => {
         imageUrl,
         tier,
         cumulativeMonths,
-        message
+        resubMessage
     }
 
 

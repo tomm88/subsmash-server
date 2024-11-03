@@ -6,7 +6,7 @@ const awaitValidWebsocketId = require('../websockets/twitchWebsocket/awaitValidW
 
 const createAlertsTwitchWebsocketHttp = async (req, res) => {
     const { hash } = req.body;
-    const subscriptionTypes = ['channel.subscribe', "channel.subscription.message", "channel.subscription.gift", "channel.follow"];
+    const subscriptionTypes = ['channel.subscribe', "channel.subscription.message", "channel.subscription.gift", "channel.follow", "channel.cheer", "channel.raid"];
 
     try {
         const streamer = await getTokensFromDatabase(hash);
