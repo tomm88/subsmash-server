@@ -2,7 +2,7 @@ const db = require('../models');
 const generateNewCharacter = require('../../controllers/openAiApiControllers/generateNewCharacter');
 const createCharacterRecord = require('./createCharacterRecord');
 
-const createSubscriber = async (streamerDatabaseId, subscriberDatabaseId, subscriberTwitchUsername, tier) => {
+const createSubscriber = async (streamerDatabaseId, subscriberDatabaseId, subscriberTwitchUsername, tier, isGift) => {
 
     try {
 
@@ -31,7 +31,8 @@ const createSubscriber = async (streamerDatabaseId, subscriberDatabaseId, subscr
             subscriberTwitchUsername,
             characterName,
             imageUrl,
-            tier
+            tier,
+            isGift
         }
 
         return formattedData;

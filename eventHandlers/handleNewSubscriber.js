@@ -1,6 +1,7 @@
 const { broadcastToStreamers } = require('../websockets/subSmashWebsocket/websocketState');
 const createSubscriber = require('../database/database_utilities/createSubscriber')
 const getStreamerAndSubscriber = require('../database/database_utilities/getStreamerAndSubscriber');
+const subscriptionExists = require('../database/database_utilities/subscriptionExists');
 
 const handleNewSubscriber = async (data) => {
 
@@ -9,15 +10,32 @@ const handleNewSubscriber = async (data) => {
     const subscriberTwitchUsername = data.user_name;
     const tier = data.tier;
     const type = "new_subscriber";
+    const isGift = data.is_gift;
 
     //Get usernames of streamer and subscriber for creating new subscriber record in database
     const streamerAndSubscriberInfo = await getStreamerAndSubscriber(streamerTwitchId, subscriberTwitchId, subscriberTwitchUsername);
     const { streamerDatabaseId, subscriberDatabaseId } = streamerAndSubscriberInfo;
 
-    //Creates new subscriber record in database
-    const newSubscriber = await createSubscriber(streamerDatabaseId, subscriberDatabaseId, subscriberTwitchUsername, tier);
+    //Check if the subscriber already exists
+    const character = await subscriptionExists(streamerDatabaseId, subscriberDatabaseId);
+
+    //Sends alert with existing subscription data if so
+    if (character) {
+        const subData = {
+            subscriberTwitchUsername,
+            characterName: character.name,
+            imageUrl: character.url,
+            tier,
+            isGift
+        }
+        broadcastToStreamers(streamerDatabaseId, type, subData)
+        return subData;
+    }
+
+    //If no subscription exists, create new subscriber
+    const newSubscriber = await createSubscriber(streamerDatabaseId, subscriberDatabaseId, subscriberTwitchUsername, tier, isGift);
     
-    broadcastToStreamers(streamerDatabaseId, type, newSubscriber)
+    broadcastToStreamers(streamerDatabaseId, type, newSubscriber);
 
     return newSubscriber;
 

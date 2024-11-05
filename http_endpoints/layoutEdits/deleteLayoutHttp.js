@@ -2,12 +2,17 @@ const deleteLayout = require('../../database/database_utilities/layouts/deleteLa
 
 const deleteLayoutHttp = async (req, res) => {
     const { id } = req.params;
-
+    const { streamerDatabaseId } = req.session;
+    let deleteResponse;
     try {
-        await deleteLayout(id);
-        res.status(200).json({ success: true, message: 'Layout deleted' });
+        deleteResponse = await deleteLayout(id, streamerDatabaseId);
+        res.status(200).json({ success: true, message: deleteResponse });
     } catch(error) {
-        res.status(500).json({ success: false, message: 'Error deleting the layout', error })
+        if (deleteResponse === 'Error: Layout is active'){
+            res.status(403).json({ success: false, message: 'Layout is active'})
+        }
+        res.status(500).json({ success: false, message: 'Error deleting the layout', error });
+        console.error("Error in http request for deleting layout")
     }
 }
 
