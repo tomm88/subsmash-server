@@ -3,7 +3,7 @@ The SubSmash Backend powers a Twitch-integrated AI character alert system, enabl
 
 🚀 **Live Version**
 The SubSmash application is live at:
-👉 subsmash.io
+👉 https://subsmash.io
 
 The backend is deployed on Heroku and operates as an API and WebSocket server for the frontend.
 
